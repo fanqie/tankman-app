@@ -6,7 +6,7 @@ module.exports = () => {
     Fc.Route.Get("/test/:id", (ctx) => {
         ctx.response.type = 'text/html';
         ctx.response.body = '<h1>Hello, TankMan!</h1>';
-    })
+    }).Middleware(['test1','test2'])
     Fc.Route.Get("/404-page", (ctx) => {
         ctx.response.type = 'text/html';
         ctx.response.body = '<h1>NotFound Page,Http-Code:404!</h1>';
