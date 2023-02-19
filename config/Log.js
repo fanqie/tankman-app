@@ -5,13 +5,13 @@ module.exports = {
             console: {type: 'console'},
             access: {
                 type: "dateFile",
-                filename: "Storage/log/access.log",
+                filename: "storage/log/access.log",
                 pattern: "yyyy-MM-dd",
                 category: "http"
             },
             app: {
                 type: "file",
-                filename: "Storage/log/app.log",
+                filename: "storage/log/app.log",
                 pattern: "yyyy-MM-dd",
                 maxLogSize: 10485760,
                 numBackups: 3,
@@ -20,7 +20,7 @@ module.exports = {
             },
             errorFile: {
                 type: "file",
-                filename: "Storage/log/errors.log",
+                filename: "storage/log/errors.log",
                 pattern: "yyyy-MM-dd",
                 alwaysIncludePattern: true
             },

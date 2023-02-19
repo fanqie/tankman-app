@@ -1,22 +1,22 @@
-const {Engine} = require("../tankman.js/framework/")
-routes = require("./routes/Index")
-const app = require("./Boostrap/App")
+const {Engine} = require("../tankman.js/framework/");
 
-app.Use(routes)
-const engine = new Engine(app)
-engine.Run()
-// FC.Log.Error("xxxxxxxxxxxxxxxxxxx")
-// FC.Log.Error("xxxxxxxxxxxxxxxxxxx","http")
+const app = require("./boostrap/App");
+
+
+const engine = new Engine(app);
+engine.Run();
+// FC.log.Error("xxxxxxxxxxxxxxxxxxx")
+// FC.log.Error("xxxxxxxxxxxxxxxxxxx","http")
 // console.log("--")
-// const engine = new Engine(boostrap)
+// const engine = new http(boostrap)
 // console.log("》》》》",FC.DB)
 // FC.DB("packages").select().then(res=>{
-//     Facades.Log.Debug(res)
+//     Facades.log.Debug(res)
 // }).catch(res=>{
 //     console.error(res)
 // })
 // FC.DB.ConnectTo("mssql")("packages").select().then(res => {
-//     Facades.Log.Warn(res)
+//     Facades.log.Warn(res)
 // }).catch(res => {
 //     console.error(res)
 // })
