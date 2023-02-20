@@ -10,8 +10,8 @@ module.exports = () => {
         ctx.response.type = 'text/html';
         ctx.response.body = '<h1>NotFound Page,http-Code:404!</h1>';
     }).Name("404");
-    FC.Route.Group("/one",function () {
 
+    Fc.Route.Group("/one",function (route) {
+        route.Redirect("/to/github", "https://github.com").Name("to.google")
     });
-    Fc.Route.Redirect("/to/google", "https://google.com").Name("to.google")
 };
