@@ -31,8 +31,9 @@ module.exports = {
             }
         },
         categories: {
-            default: {appenders: ["console", "app", "errors"], level: "DEBUG"},
-            http: {appenders: ["console", "access"], level: "DEBUG"}
+            default: {appenders: ["console", "app", "errors"], level: FC.Env.IsDebugger() ? "DEBUG" : "ERROR"},
+            database: {appenders: ["console", "app", "errors"], level: FC.Env.IsDebugger() ? "DEBUG" : "ERROR"},
+            http: {appenders: ["console", "access"], level: FC.Env.IsDebugger() ? "DEBUG" : "ERROR"}
         }
     },
 }
