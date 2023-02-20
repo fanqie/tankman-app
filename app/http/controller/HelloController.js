@@ -4,9 +4,12 @@ module.exports = class HelloTankMainController {
 
     }
 
-    Index(ctx) {
+    /**
+     * @param httpCtx {HttpContext}
+     * @constructor
+     */
+    Index(httpCtx) {
         FC.Log.Info("这里执行了")
-        ctx.response.type = 'text/html';
-        ctx.response.body = '<h1>Hello, TankMan!,time：'+new Date()+'</h1>';
+        httpCtx.response.SetBody('<h1>Hello, TankMan!,time：'+new Date()+'</h1>');
     }
 }
