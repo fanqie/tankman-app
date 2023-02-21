@@ -1,4 +1,4 @@
-const FC=require("tankman/framework/Facades")
+const Facades=require("tankman/framework/Facades")
 module.exports = class HelloTankMainController {
     constructor() {
 
@@ -9,7 +9,7 @@ module.exports = class HelloTankMainController {
      * @constructor
      */
     Index(httpCtx) {
-        FC.Log.Info("这里执行了")
+        Facades.Log.Info("这里执行了")
         httpCtx.response.SetBody('<h1>Hello, TankMan!,time：'+new Date()+'</h1>');
     }
 }
