@@ -1,5 +1,5 @@
 const Middleware = require('tankman/framework/http/middleware/Middleware')
-const Facades = require("tankman/framework/Facades")
+const Facades = require("tankman/framework/facades/Facades")
 module.exports = class Test2Middleware extends Middleware {
     /**
      *
@@ -14,4 +14,4 @@ module.exports = class Test2Middleware extends Middleware {
         Facades.Log.Info("after test2");
 
     }
-}
+};

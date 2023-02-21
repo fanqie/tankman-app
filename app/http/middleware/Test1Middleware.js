@@ -1,5 +1,5 @@
 const Middleware = require('tankman/framework/http/middleware/Middleware');
-const Facades = require("tankman/framework/Facades");
+const Facades = require("tankman/framework/facades/Facades");
 module.exports = class Test1Middleware extends Middleware {
     /**
      *

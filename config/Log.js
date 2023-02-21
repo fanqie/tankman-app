@@ -1,4 +1,4 @@
-const {Facades} = require("tankman/framework/Facades");
+const {Facades} = require("tankman/framework/Index");
 module.exports = {
     log: {
         appenders: {

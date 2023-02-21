@@ -1,8 +1,8 @@
-const {Application} = require("tankman/framework/")
+const {Application} = require("tankman/framework/Index")
 /**
  * @type Application
  */
 app = new Application();
 
-app.bootTank()
+app.bootTank();
 module.exports = app;

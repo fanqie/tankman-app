@@ -1,4 +1,4 @@
-const Facades=require("tankman/framework/Facades")
+const Facades = require("tankman/framework/facades/Facades");
 module.exports = class HelloTankMainController {
     constructor() {
 
