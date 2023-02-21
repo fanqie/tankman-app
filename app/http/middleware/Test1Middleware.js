@@ -1,5 +1,5 @@
 const Middleware = require('tankman/framework/http/middleware/Middleware');
-const FC = require("tankman/framework/Facades");
+const Facades = require("tankman/framework/Facades");
 module.exports = class Test1Middleware extends Middleware {
     /**
      *
@@ -9,8 +9,8 @@ module.exports = class Test1Middleware extends Middleware {
      * @constructor
      */
     async Handle(httpCtx, next) {
-        FC.Log.Info("before")
+        Facades.Log.Info("before")
         await next()
-        FC.Log.Info("after")
+        Facades.Log.Info("after")
     }
 }

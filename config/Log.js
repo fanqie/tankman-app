@@ -1,4 +1,4 @@
-const {FC} = require("tankman/framework");
+const {Facades} = require("tankman/framework/Facades");
 module.exports = {
     log: {
         appenders: {
@@ -31,9 +31,9 @@ module.exports = {
             }
         },
         categories: {
-            default: {appenders: ["console", "app", "errors"], level: FC.Env.IsDebugger() ? "DEBUG" : "ERROR"},
-            database: {appenders: ["console", "app", "errors"], level: FC.Env.IsDebugger() ? "DEBUG" : "ERROR"},
-            http: {appenders: ["console", "access"], level: FC.Env.IsDebugger() ? "DEBUG" : "ERROR"}
+            default: {appenders: ["console", "app", "errors"], level: Facades.Env.IsDebugger() ? "DEBUG" : "ERROR"},
+            database: {appenders: ["console", "app", "errors"], level: Facades.Env.IsDebugger() ? "DEBUG" : "ERROR"},
+            http: {appenders: ["console", "access"], level: Facades.Env.IsDebugger() ? "DEBUG" : "ERROR"}
         }
     },
 }
