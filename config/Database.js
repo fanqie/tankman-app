@@ -1,4 +1,4 @@
-const {Facades} = require("tankman/framework/Index");
+const Facades = require("tankman/framework/facades/Facades");
 module.exports = {
     "database": {
         default: Facades.Env.Get("DB_CONNECTION", "mysql"),

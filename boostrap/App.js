@@ -1,4 +1,4 @@
-const {Application} = require("tankman/framework/Index")
+const Application = require("tankman/framework/boot/Application")
 /**
  * @type Application
  */

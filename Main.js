@@ -1,4 +1,4 @@
-const {Engine} = require("../tankman.js/framework/");
+const Engine = require("../tankman.js/framework/http/Engine");
 
 const app = require("./boostrap/App");
 
