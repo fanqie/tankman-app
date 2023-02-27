@@ -1,7 +1,8 @@
 const Facades = require("tankman/framework/facades/Facades");
-module.exports = class HelloTankMainController {
+const Controller = require("tankman/framework/http/controller/Controller");
+module.exports = class HelloController extends Controller{
     constructor() {
-
+        super();
     }
 
     /**

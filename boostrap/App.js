@@ -1,8 +1,10 @@
 const Application = require("tankman/framework/boot/Application")
-/**
- * @type Application
- */
-app = new Application();
 
-app.bootTank();
-module.exports = app;
+module.exports = ()=>{
+    /**
+     * @type Application
+     */
+   const app = new Application();
+    app.bootTank();
+    return app;
+};

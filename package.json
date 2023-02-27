@@ -2,8 +2,9 @@
   "name": "tankman-app",
   "version": "1.0.0",
   "description": "",
-  "main": "Main.js",
+  "main": "main.js",
   "scripts": {
+    "start": "nodemon main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,5 +19,8 @@
   "homepage": "https://github.com/curry-trooper/tankman-app#readme",
   "dependencies": {
     "tankman": "file:../tankman.js"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }
