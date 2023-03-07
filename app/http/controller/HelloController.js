@@ -12,6 +12,7 @@ module.exports = class HelloController extends Controller {
      */
     Index(httpCtx) {
         Facades.Log.Info("这里执行了")
+        console.log(httpCtx.request.File("testfile"))
         httpCtx.response.SetBody('<h1>Hello, TankMan!,time：' + new Date() + '</h1>');
     }
 

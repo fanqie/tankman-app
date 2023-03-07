@@ -23,6 +23,14 @@ module.exports = {
             RouteProvider,
             LogProvider,
         ]
+    },
+    xss: {
+        routerWhiteList: [],
+        whiteField: [],
+        options: {
+            css: {},
+            whiteList: {},
+        }
     }
 }
 

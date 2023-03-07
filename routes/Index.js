@@ -11,7 +11,7 @@ module.exports = () => {
 <p>${httpCtx.request.Get("id")}</p>
 `);
     });
-    Facades.Route.Get("/test/:id", HelloController, "Index").Middleware(['test1', 'test2']);
+    Facades.Route.Post("/test/:id", HelloController, "Index").Middleware(['test1', 'test2']);
 
     Facades.Route.Get("/404-page", (httpCtx) => {
         httpCtx.response.SetBody('<h1>NotFound Page,http-Code:404!</h1>');
