@@ -2,7 +2,9 @@ const Facades = require("tankman/framework/facades/Facades");
 module.exports = {
     "database": {
         default: Facades.Env.Get("DB_CONNECTION", "mysql"),
-        //mysql for MySQL or MariaDB
+        /**
+         * mysql for MySQL or MariaDB
+         */
         mysql: {
             client: 'mysql',
             connection: {
@@ -19,7 +21,12 @@ module.exports = {
             acquireConnectionTimeout: 10000,
 
         },
-        //pg for PostgreSQL, CockroachDB and Amazon Redshift, pg-native for PostgreSQL with native C++ bindings (requires PostgresSQL installed to link against)
+        /**
+         * pg for PostgreSQL, CockroachDB and Amazon Redshift, pg-native for PostgreSQL with native C++ bindings (requires PostgresSQL installed to link against)
+         * Plug-ins need to be installed to support
+         * $ npm install pg
+         * $ npm install pg-native
+         */
         pg: {
             client: 'pg',
             connection: {
@@ -38,7 +45,9 @@ module.exports = {
                 tableName: 'migrations'
             }
         },
-        //tedious for MSSQL(Sql Server)
+        /**
+         * tedious for MSSQL(Sql Server)
+         */
         mssql: {
             client: 'mssql',
             connection: {
@@ -63,7 +72,11 @@ module.exports = {
                 tableName: 'migrations'
             }
         },
-        //oracledb for Oracle Database
+        /**
+         * oracledb for Oracle Database
+         * Plug-ins need to be installed to support
+         * $ npm install oracledb
+         */
         oracledb: {
             client: 'oracledb',
             connection: {
@@ -83,7 +96,12 @@ module.exports = {
             }
 
         },
-        //sqlite3 for SQLite3
+        /**
+         * sqlite3 for SQLite3
+         * Plug-ins need to be installed to support
+         * $ npm install sqlite3
+         * $ npm install better-sqlite3
+         */
         sqlite3: {
             client: 'sqlite3',
             connection: {

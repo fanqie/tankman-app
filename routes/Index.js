@@ -4,7 +4,8 @@ module.exports = () => {
     Facades.Route.Get("/", (httpCtx) => {
         httpCtx.response.SetBody('<h1>home page!</h1>');
     });
-    Facades.Route.Post("/list/:id", (httpCtx,id) => {
+    Facades.Route.Get("/dbList", HelloController, "List");
+    Facades.Route.Post("/list/:id", (httpCtx, id) => {
         httpCtx.response.SetBody(`<h1>home page!</h1>
 <p>${httpCtx.request.Post("value")}</p>
 <p>${httpCtx.request.Get("id")}</p>
