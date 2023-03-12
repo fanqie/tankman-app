@@ -1,19 +1,21 @@
 const Facades = require("tankman/framework/facades/Facades");
 const Controller = require("tankman/framework/http/controller/Controller");
 const app = require("../../../boostrap/App");
-module.exports = class HelloController extends Controller {
+
+class HelloController extends Controller {
     constructor() {
         super();
     }
 
     /**
      * @param httpCtx {HttpContext}
-     * @constructor
+     * @param id {int}
+     * @function
      */
-    Index(httpCtx) {
-        Facades.Log.Info("这里执行了")
+    Index(httpCtx, id) {
         console.log(httpCtx.request.File("testfile"))
-        httpCtx.response.SetBody('<h1>Hello, TankMan!,time：' + new Date() + '</h1>');
+        httpCtx.response.JsonError({id:Number(id)})
+
     }
 
     async List(httpCtx) {
@@ -23,3 +25,5 @@ module.exports = class HelloController extends Controller {
         httpCtx.response.JsonSuccess(res)
     }
 }
+
+module.exports = HelloController

@@ -35,6 +35,21 @@ module.exports = {
             css: {},
             whiteList: {},
         }
-    }
+    }, response:
+        {
+            json: {
+                template: {
+                    code: '#err_no',
+                    data: '#data',
+                    err_msg: '#err_msg',
+                    time: '#time',
+                },
+                defaultErrNo: {
+                    success: 200,
+                    error: 1,
+                },
+            },
+
+        }
 }
 
