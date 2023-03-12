@@ -18,7 +18,8 @@ module.exports = class HelloController extends Controller {
 
     async List(httpCtx) {
         const res = await Facades.Db("packages").select()
-        console.log("mysql->>>>", await Facades.Db.instance.Get("mysql")("packages").select())
-        httpCtx.response.SetBody(`<pre>${JSON.stringify(res)}</pre>`);
+        // console.log("mysql->>>>", await Facades.Db.instance.Get("mysql")("packages").select())
+        // httpCtx.response.SetBody(`<pre>${JSON.stringify(res)}</pre>`);
+        httpCtx.response.JsonSuccess(res)
     }
 }
