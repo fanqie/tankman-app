@@ -1,19 +1,19 @@
-const Facades = require("tankman/framework/facades/Facades");
+const facades = require("tankman/framework/facades/Facades");
 module.exports = {
     "cache": {
-        default: Facades.Env.Get("CACHE_DRIVE", "file"),
+        default: facades.env.get("CACHE_DRIVE", "file"),
         //mysql for MySQL or MariaDB
         file: {
-            saveFile: Facades.Env.Get("CACHE_DRIVE", ".runtime/cache.json")
+            saveFile: facades.env.get("CACHE_DRIVE", ".runtime/cache.json")
         },
         redis: {
             client: 'mysql',
             connection: {
-                port: Facades.Env.Get("DB_PORT", 3306),
-                host: Facades.Env.Get("DB_HOST", ""),
-                user: Facades.Env.Get("DB_USERNAME", ""),
-                database: Facades.Env.Get("DB_DATABASE", ""),
-                password: Facades.Env.Get("DB_PASSWORD", ""),
+                port: facades.env.get("DB_PORT", 3306),
+                host: facades.env.get("DB_HOST", ""),
+                user: facades.env.get("DB_USERNAME", ""),
+                database: facades.env.get("DB_DATABASE", ""),
+                password: facades.env.get("DB_PASSWORD", ""),
             },
             pool: {
                 min: 2,
@@ -26,11 +26,11 @@ module.exports = {
         pg: {
             client: 'pg',
             connection: {
-                port: Facades.Env.Get("DB_PORT", 5432),
-                host: Facades.Env.Get("DB_HOST", ""),
-                user: Facades.Env.Get("DB_USERNAME", ""),
-                database: Facades.Env.Get("DB_DATABASE", ""),
-                password: Facades.Env.Get("DB_PASSWORD", ""),
+                port: facades.env.get("DB_PORT", 5432),
+                host: facades.env.get("DB_HOST", ""),
+                user: facades.env.get("DB_USERNAME", ""),
+                database: facades.env.get("DB_DATABASE", ""),
+                password: facades.env.get("DB_PASSWORD", ""),
             },
             pool: {
                 max: 5,
@@ -45,11 +45,11 @@ module.exports = {
         mssql: {
             client: 'mssql',
             connection: {
-                port: Number(Facades.Env.Get("DB_PORT", 1433)),
-                server: Facades.Env.Get("DB_HOST", "."),
-                user: Facades.Env.Get("DB_USERNAME", "sa"),
-                database: Facades.Env.Get("DB_DATABASE", ""),
-                password: Facades.Env.Get("DB_PASSWORD", ""),
+                port: Number(facades.env.get("DB_PORT", 1433)),
+                server: facades.env.get("DB_HOST", "."),
+                user: facades.env.get("DB_USERNAME", "sa"),
+                database: facades.env.get("DB_DATABASE", ""),
+                password: facades.env.get("DB_PASSWORD", ""),
                 driver: "msnodesqlv8",
                 options: {
                     trustedConnection: true,
@@ -70,11 +70,11 @@ module.exports = {
         oracledb: {
             client: 'oracledb',
             connection: {
-                port: Facades.Env.Get("DB_PORT", 1521),
-                host: Facades.Env.Get("DB_HOST", ""),
-                user: Facades.Env.Get("DB_USERNAME", ""),
-                database: Facades.Env.Get("DB_DATABASE", ""),
-                password: Facades.Env.Get("DB_PASSWORD", ""),
+                port: facades.env.get("DB_PORT", 1521),
+                host: facades.env.get("DB_HOST", ""),
+                user: facades.env.get("DB_USERNAME", ""),
+                database: facades.env.get("DB_DATABASE", ""),
+                password: facades.env.get("DB_PASSWORD", ""),
             },
             pool: {
                 max: 5,

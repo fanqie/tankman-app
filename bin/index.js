@@ -16,5 +16,5 @@ if (args.length > 0) {
         console.log(key,"\t", command.getDesc())
         console.log(command.help())
     })
-    // throw new Error("Undefined Command")
+    // throw new error("Undefined Command")
 }

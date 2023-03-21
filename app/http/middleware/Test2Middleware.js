@@ -9,9 +9,9 @@ module.exports = class Test2Middleware extends Middleware {
      * @constructor
      */
     async Handle(httpCtx, next) {
-        Facades.Log.Info("before test2");
+        Facades.log.info("before test2");
         await next();
-        Facades.Log.Info("after test2");
+        Facades.log.info("after test2");
 
     }
 };

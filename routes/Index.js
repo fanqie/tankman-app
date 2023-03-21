@@ -1,27 +1,28 @@
-const Facades = require("tankman/framework/facades/Facades");
 const HelloController = require("../app/http/controller/HelloController");
 
-module.exports = () => {
-    Facades.Route.Get("/", (httpCtx) => {
-        httpCtx.response.Html("home page");
+module.exports = (route) => {
+
+    route.get("/", (httpCtx) => {
+        httpCtx.response.html("home page");
     });
-    Facades.Route.Get("/dbList", [HelloController, "List"]);
-    Facades.Route.Post("/list/:id", (httpCtx, id) => {
-        httpCtx.response.SetBody(`<h1>home page!</h1>
-<p>${httpCtx.request.Post("value")}</p>
+    route.get("/dbList", [HelloController, "List"]);
+    route.post("/list/:id", (httpCtx, id) => {
+        httpCtx.response.setBody(`<h1>home page!</h1>
+<p>${httpCtx.request.post("value")}</p>
 <p>${httpCtx.request.Get("id")}</p>
 `);
     });
 
-    Facades.Route.Post("/test/:id", [HelloController, "Index"]).Middleware(['test1', 'test2']);
+    route.post("/test/:id", [HelloController, "Index"]).middleware(['test1', 'test2']);
+    route.get("/curl", [HelloController, "curl"]);
 
-    Facades.Route.Get("/404-page", (httpCtx) => {
-        httpCtx.response.Html("404 Not Found Page");
-    }).Name("404");
+    route.get("/404-page", (httpCtx) => {
+        httpCtx.response.html("404 Not Found Page");
+    }).routeName("404");
 
 
-    Facades.Route.Group("/one",
+    route.group("/one",
         function (route) {
-            route.Redirect("/to/github", "https://github.com").Name("to.google")
+            route.redirect("/to/github", "https://github.com").routeName("to.google")
         });
 };
