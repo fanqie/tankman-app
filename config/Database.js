@@ -18,8 +18,10 @@ module.exports = {
                 min: 2,
                 max: 10,
             },
+            debug: Boolean(facades.env.get("APP_DEBUG", "true")),
             acquireConnectionTimeout: 10000,
-
+            // Set table name prefix here
+            prefix: "test_"
         },
         /**
          * pg for PostgreSQL, CockroachDB and Amazon Redshift, pg-native for PostgreSQL with native C++ bindings (requires PostgresSQL installed to link against)
