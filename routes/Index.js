@@ -1,11 +1,12 @@
-const HelloController = require("../app/http/controller/HelloController");
+const path = require("path");
+const HelloControllerPath = path.resolve(__dirname,"../app/http/controller/HelloController");
 
 module.exports = (route) => {
 
     route.get("/", (httpCtx) => {
         httpCtx.response.html("home page");
     });
-    route.get("/dbList", [HelloController, "List"]);
+    route.get("/dbList", [HelloControllerPath, "List"]);
     route.post("/list/:id", (httpCtx, id) => {
         httpCtx.response.setBody(`<h1>home page!</h1>
 <p>${httpCtx.request.post("value")}</p>
@@ -13,8 +14,8 @@ module.exports = (route) => {
 `);
     });
 
-    route.post("/test/:id", [HelloController, "Index"]).middleware(['test1', 'test2']);
-    route.get("/curl", [HelloController, "curl"]);
+    route.post("/test/:id", [HelloControllerPath, "Index"]).middleware(['test1', 'test2']);
+    route.get("/curl", [HelloControllerPath, "curl"]);
 
     route.get("/404-page", (httpCtx) => {
         httpCtx.response.html("404 Not Found Page");

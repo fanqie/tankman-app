@@ -1,0 +1,15 @@
+<!-- user-info.art -->
+<div class="user-info">
+    <div class="avatar">
+        <img width="120" src="{{ avatar }}" alt="{{ username }}的头像">
+    </div>
+    <div class="info">
+        <h2>{{ username }}</h2>
+        <p class="email">email:{{ email }}</p>
+        <p class="birthday">birthday:{{ birthday }}</p>
+        <p class="gender">gender:{{ gender }}</p>
+        <p class="country">country:{{ country }}</p>
+        <p class="github">github:{{ github }}</p>
+        <p class="blog">blog:{{ blog }}</p>
+    </div>
+</div>
