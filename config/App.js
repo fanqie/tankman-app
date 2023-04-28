@@ -43,8 +43,8 @@ module.exports = {
     },
     //render("admin.dashboard",{}) equates render("admin/dashboard",{}), render file as views/admin/dashboard.tpl
     templateEngine: {
-        default: "art",//art|pug
-        suffix: ".tpl",//.pug|.art|.html|.xxx
+        default: "pug",//art|pug
+        suffix: ".pug",//.pug|.art|.html|.xxx
         dir: path.resolve(process.cwd(), "views"),//absolutePath, default is views/
     },
     response:

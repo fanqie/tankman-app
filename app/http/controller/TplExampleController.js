@@ -17,8 +17,10 @@ class TplExampleController extends Controller {
             github: 'https://github.com/fanqie',
             blog: 'https://my.oschina.net/youa',
         };
-        httpCtx.response.render("example.user-profile",data)
+        httpCtx.response.view("example.user-profile",data)
     }
+    
+   
 }
 
 module.exports = TplExampleController
