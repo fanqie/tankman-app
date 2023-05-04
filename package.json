@@ -26,5 +26,13 @@
   "devDependencies": {
     "mocha": "^10.2.0",
     "nodemon": "^2.0.20"
+  },
+  "pkg": {
+    "scripts": ["app/**/*.js","config/*.js","routes/*.js","bin/*.js"],
+    "assets": ["views/**/*","public/**/*"],
+    "targets": [
+      "node14"
+    ],
+    "outputPath": "dist"
   }
 }

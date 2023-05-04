@@ -1,6 +1,6 @@
 const DatabaseProvider = require("tankman/framework/provider/DatabaseProvider")
 const RouteProvider = require("tankman/framework/provider/RouteProvider")
-const TemplateProvider = require("tankman/framework/provider/TemplateProvider")
+const ViewProvider = require("tankman/framework/provider/ViewProvider")
 const LogProvider = require("tankman/framework/provider/LogProvider")
 const HttpClientProvider = require("tankman/framework/provider/HttpClientProvider")
 const Test1Middleware = require("../app/http/middleware/Test1Middleware")
@@ -13,8 +13,8 @@ module.exports = {
      * The cluster module allows easy creation of child processes that all share server ports.
      */
     cluster: {
-        enabled: false,
-        process_max_count: 8
+        enabled: true,
+        process_max_count: 128
     },
 
     app: {
@@ -25,7 +25,7 @@ module.exports = {
         providers: [
             DatabaseProvider,
             RouteProvider,
-            TemplateProvider,
+            ViewProvider,
             LogProvider,
             HttpClientProvider,
         ],
@@ -42,10 +42,30 @@ module.exports = {
         }
     },
     //render("admin.dashboard",{}) equates render("admin/dashboard",{}), render file as views/admin/dashboard.tpl
-    templateEngine: {
+    view: {
         default: "pug",//art|pug
         suffix: ".pug",//.pug|.art|.html|.xxx
         dir: path.resolve(process.cwd(), "views"),//absolutePath, default is views/
+        cache: {
+            disable: process.env.NODE_ENV==="development",
+            /**
+             * '2 days'  // 172800000
+             * '1d'      // 86400000
+             * '10h'     // 36000000
+             * '2.5 hrs' // 9000000
+             * '2h'      // 7200000
+             * '1m'      // 60000
+             * '5s'      // 5000
+             * '1y'      // 31557600000
+             * '100'     // 100
+             * '-3 days' // -259200000
+             * '-1h'     // -3600000
+             * '-200'    // -200
+             */
+            maxLife: '1h',//support  ms value,
+            clearOnRestart: true,
+
+        }
     },
     response:
         {

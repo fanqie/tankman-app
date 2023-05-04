@@ -4,6 +4,7 @@ const Controller = require("tankman/framework/http/controller/Controller");
 class TplExampleController extends Controller {
     constructor() {
         super();
+
     }
 
     userInfo(httpCtx) {
@@ -19,8 +20,8 @@ class TplExampleController extends Controller {
         };
         httpCtx.response.view("example.user-profile",data)
     }
-    
-   
+
+
 }
 
 module.exports = TplExampleController
