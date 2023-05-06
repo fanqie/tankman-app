@@ -8,6 +8,8 @@ const Test2Middleware = require("../app/http/middleware/Test2Middleware")
 const GenerateCommand = require("tankman/framework/command/GenerateCommand")
 const path = require("path");
 const facades = require("tankman/framework/facades/Facades");
+// const PugTemplate = require("tankman/framework/template/PugTemplate")
+const ArtTemplate = require("tankman/framework/template/ArtTemplate")
 module.exports = {
     /**
      * Clusters of Tankman.js processes can be used to run multiple instances of http-server that can distribute workloads among their application threads.
@@ -42,10 +44,13 @@ module.exports = {
             whiteList: {},
         }
     },
+
     //render("admin.dashboard",{}) equates render("admin/dashboard",{}), render file as views/admin/dashboard.tpl
     view: {
-        default: "pug",//art|pug
-        dir: path.resolve(process.cwd(), "views"),//absolutePath, default is views/
+        // const PugTemplate = require("tankman/framework/template/PugTemplate")
+        // const ArtTemplate = require("tankman/framework/template/ArtTemplate")
+        handler: ArtTemplate,//art|pug
+        dir: path.resolve(process.cwd(), 'views'),//absolutePath, default is views/
         cache: {
             // enable: facades.env.get("APP_ENV") === "production",
             enable: true,
@@ -65,6 +70,21 @@ module.exports = {
              */
             maxLife: '1h',//support  ms value,
         }
+    },
+    httpSession: {
+        /**
+         * No matter which one you choose, the default driver will be used directly,
+         * so it is not recommended to choose the file type when the type is cache,
+         * If you choose a file type, it will default to creating a session file, which is not suitable for distributed systems
+         */
+        handler: 'file',//file,cache,database
+        life: {
+            maxAge: '30m',
+            autoRenew: true,//default：true
+            renewTime: '15m',
+        },
+        cookieIdPrefix: "",
+        gcIntervalTime: '1s'//The interval between expired session recycling
     },
     response:
         {

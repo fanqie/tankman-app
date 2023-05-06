@@ -1,9 +1,9 @@
-extends ./layout.pug  
+extends ./layout.pug
 
-block title 
+block title
     = title
 
-block head  
+block head
  style.
         body{
             padding:20px;
@@ -30,27 +30,27 @@ block content
             hr
             .user-info
                 .avatar
-                    img(width='60', src=avatar, alt=username + '的头像')
+                    img(width='60', src=avatar, alt=username )
                 .info
                     h2= username
-                    p 
+                    p
                         label email:
                         span.context= email
-                    p  
-                        label birthday:  
+                    p
+                        label birthday:
                         span.context= birthday
-                    p  
-                        label gender:  
+                    p
+                        label gender:
                         span.context= gender
-                    p  
-                        label country:  
+                    p
+                        label country:
                         span.context= country
-                    p  
-                        label href:  
+                    p
+                        label href:
                         span.context=ctx.request.getHref()
-                    p  
-                        label currentRoute:  
+                    p
+                        label currentRoute:
                         span.context=ctx.request.getRouter().path
                     p
-                        label routes:  
-                        span.context!= ctx.route.all().map((route)=>route.path).join("<br/>")   
+                        label routes:
+                        span.context!= ctx.route.all().map((route)=>route.path).join("<br/>")
