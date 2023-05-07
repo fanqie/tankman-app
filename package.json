@@ -28,8 +28,16 @@
     "nodemon": "^2.0.20"
   },
   "pkg": {
-    "scripts": ["app/**/*.js","config/*.js","routes/*.js","bin/*.js"],
-    "assets": ["views/**/*","public/**/*"],
+    "scripts": [
+      "app/**/*.js",
+      "config/*.js",
+      "routes/*.js",
+      "bin/*.js"
+    ],
+    "assets": [
+      "views/**/*",
+      "public/**/*"
+    ],
     "targets": [
       "node14"
     ],

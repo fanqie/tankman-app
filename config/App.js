@@ -8,8 +8,8 @@ const Test2Middleware = require("../app/http/middleware/Test2Middleware")
 const GenerateCommand = require("tankman/framework/command/GenerateCommand")
 const path = require("path");
 const facades = require("tankman/framework/facades/Facades");
-// const PugTemplate = require("tankman/framework/template/PugTemplate")
-const ArtTemplate = require("tankman/framework/template/ArtTemplate")
+const PugTemplate = require("tankman/framework/template/PugTemplate")
+// const ArtTemplate = require("tankman/framework/template/ArtTemplate")
 module.exports = {
     /**
      * Clusters of Tankman.js processes can be used to run multiple instances of http-server that can distribute workloads among their application threads.
@@ -49,7 +49,8 @@ module.exports = {
     view: {
         // const PugTemplate = require("tankman/framework/template/PugTemplate")
         // const ArtTemplate = require("tankman/framework/template/ArtTemplate")
-        handler: ArtTemplate,//art|pug
+        // handler: ArtTemplate,//art|pug
+        handler: PugTemplate,//art|pug
         dir: path.resolve(process.cwd(), 'views'),//absolutePath, default is views/
         cache: {
             // enable: facades.env.get("APP_ENV") === "production",
