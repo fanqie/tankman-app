@@ -10,6 +10,7 @@ const path = require("path");
 const facades = require("tankman/framework/facades/Facades");
 const PugTemplate = require("tankman/framework/template/PugTemplate")
 // const ArtTemplate = require("tankman/framework/template/ArtTemplate")
+const FileSessionAdapter=require("tankman/framework/http/httpSessionAdapater/FileSessionAdapter")
 module.exports = {
     /**
      * Clusters of Tankman.js processes can be used to run multiple instances of http-server that can distribute workloads among their application threads.
@@ -78,11 +79,11 @@ module.exports = {
          * so it is not recommended to choose the file type when the type is cache,
          * If you choose a file type, it will default to creating a session file, which is not suitable for distributed systems
          */
-        handler: 'file',//file,cache,database
+        handler:new FileSessionAdapter() ,//file,cache,database default path is: path.join(process.cwd(),"storage", ".temp", "session")
         life: {
-            maxAge: '30m',
+            maxAge: '30s',
             autoRenew: true,//default：true
-            renewTime: '15m',
+            renewTime: '15s',
         },
         cookieIdPrefix: "",
         gcIntervalTime: '1s'//The interval between expired session recycling
