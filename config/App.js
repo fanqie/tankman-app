@@ -81,9 +81,9 @@ module.exports = {
          */
         handler:new FileSessionAdapter() ,//file,cache,database default path is: path.join(process.cwd(),"storage", ".temp", "session")
         life: {
-            maxAge: '30s',
+            maxAge: '30m',
             autoRenew: true,//default：true
-            renewTime: '15s',
+            renewTime: '15m',
         },
         cookieIdPrefix: "",
         gcIntervalTime: '1s'//The interval between expired session recycling

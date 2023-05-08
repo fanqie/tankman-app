@@ -30,6 +30,7 @@ class SessionController extends Controller {
 
     show(httpCtx){
         const data = httpCtx.session.get("userData");
+        console.log("allSession",httpCtx.session.all())
         httpCtx.session.get("flashData");
         httpCtx.response.view("example.user-profile",data)
 
