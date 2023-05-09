@@ -1,17 +1,18 @@
 const facades = require("tankman/framework/facades/Facades");
+const path = require("path");
 module.exports = {
     log: {
         appenders: {
             console: {type: 'console'},
             access: {
                 type: "dateFile",
-                filename: "storage/log/access.log",
+                filename: path.join(process.cwd(),  ".runtime", "log", "access.log"),
                 pattern: "yyyy-MM-dd",
                 category: "http"
             },
             app: {
                 type: "file",
-                filename: "storage/log/app.log",
+                filename: path.join(process.cwd(),  ".runtime", "log", "app.log"),
                 pattern: "yyyy-MM-dd",
                 maxLogSize: 10485760,
                 numBackups: 3,
@@ -20,7 +21,7 @@ module.exports = {
             },
             errorFile: {
                 type: "file",
-                filename: "storage/log/errors.log",
+                filename: path.join(process.cwd(),  ".runtime", "log", "errors.log"),
                 pattern: "yyyy-MM-dd",
                 alwaysIncludePattern: true
             },
