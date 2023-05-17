@@ -1,4 +1,3 @@
-const facades = require("tankman/framework/facades/Facades");
 const Controller = require("tankman/framework/http/controller/Controller");
 
 class SessionController extends Controller {
@@ -32,6 +31,7 @@ class SessionController extends Controller {
         const data = await httpCtx.session.get("userData");
         console.log("allSession", await httpCtx.session.all())
         httpCtx.session.get("flashData");
+        httpCtx.session.remove("*");
         httpCtx.response.view("example.user-profile", data)
 
     }
