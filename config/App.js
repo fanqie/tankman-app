@@ -2,6 +2,7 @@ const DatabaseProvider = require("tankman/framework/provider/DatabaseProvider")
 const RouteProvider = require("tankman/framework/provider/RouteProvider")
 const ViewProvider = require("tankman/framework/provider/ViewProvider")
 const LogProvider = require("tankman/framework/provider/LogProvider")
+const CacheProvider = require("tankman/framework/provider/CacheProvider")
 const HttpClientProvider = require("tankman/framework/provider/HttpClientProvider")
 const Test1Middleware = require("../app/http/middleware/Test1Middleware")
 const Test2Middleware = require("../app/http/middleware/Test2Middleware")
@@ -10,7 +11,9 @@ const path = require("path");
 const facades = require("tankman/framework/facades/Facades");
 const PugTemplate = require("tankman/framework/template/PugTemplate")
 // const ArtTemplate = require("tankman/framework/template/ArtTemplate")
-const FileSessionAdapter=require("tankman/framework/http/httpSessionAdapater/FileSessionAdapter")
+// const FileSessionAdapter = require("tankman/framework/http/httpSessionAdapater/FileSessionAdapter")
+const RedisSessionAdapter = require("tankman/framework/http/httpSessionAdapater/RedisSessionAdapter")
+const RedisAdapter = require("tankman/framework/cache/adapter/RedisAdapter");
 module.exports = {
     /**
      * Clusters of Tankman.js processes can be used to run multiple instances of http-server that can distribute workloads among their application threads.
@@ -32,6 +35,7 @@ module.exports = {
             ViewProvider,
             LogProvider,
             HttpClientProvider,
+            CacheProvider,
         ],
         commands: [
             GenerateCommand
@@ -79,7 +83,14 @@ module.exports = {
          * so it is not recommended to choose the file type when the type is cache,
          * If you choose a file type, it will default to creating a session file, which is not suitable for distributed systems
          */
-        handler:new FileSessionAdapter() ,//file,cache,database default path is: path.join(process.cwd(),"storage", ".temp", "session")
+        // handler: new FileSessionAdapter(),//file,cache,database default path is: path.join(process.cwd(),"storage", ".temp", "session")
+        handler: new RedisSessionAdapter(new RedisAdapter({
+            port: facades.env.get("REDIS_PORT", 6379),
+            host: facades.env.get("REDIS_HOST", "127.0.0.1"),
+            username: facades.env.get("REDIS_USERNAME", ""),
+            password: facades.env.get("REDIS_PASSWORD", null),
+            db: 0,
+        })),//file,cache,database default path is: path.join(process.cwd(),"storage", ".temp", "session")
         life: {
             maxAge: '30m',
             autoRenew: true,//default：true

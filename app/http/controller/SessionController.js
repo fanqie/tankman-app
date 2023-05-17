@@ -11,7 +11,7 @@ class SessionController extends Controller {
      *
      * @param httpCtx
      */
-    store(httpCtx) {
+    async store(httpCtx) {
         const data = {
             avatar: 'https://avatars.githubusercontent.com/u/466966?v=4',
             username: 'John Doe',
@@ -22,17 +22,17 @@ class SessionController extends Controller {
             github: 'https://github.com/fanqie',
             blog: 'https://my.oschina.net/youa',
         };
-        httpCtx.session.set("userData",data);
-        httpCtx.session.flash("flashData",data);
-        httpCtx.response.view("example.user-profile",data)
+        await httpCtx.session.set("userData", data);
+        await httpCtx.session.flash("flashData", data);
+        httpCtx.response.view("example.user-profile", data)
 
     }
 
-    show(httpCtx){
-        const data = httpCtx.session.get("userData");
-        console.log("allSession",httpCtx.session.all())
+    async show(httpCtx) {
+        const data = await httpCtx.session.get("userData");
+        console.log("allSession", await httpCtx.session.all())
         httpCtx.session.get("flashData");
-        httpCtx.response.view("example.user-profile",data)
+        httpCtx.response.view("example.user-profile", data)
 
     }
 }

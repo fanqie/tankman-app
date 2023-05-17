@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "mocha": "^10.2.0",
+    "@types/node": "^18.14.0",
     "nodemon": "^2.0.20"
   },
   "pkg": {
