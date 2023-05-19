@@ -8,7 +8,7 @@ module.exports = class Test1Middleware extends Middleware {
      * @returns {Promise<void>}
      * @constructor
      */
-    async Handle(httpCtx, next) {
+    async handle(httpCtx, next) {
         Facades.log.info("before")
         await next()
         Facades.log.info("after")

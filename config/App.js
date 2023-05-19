@@ -1,49 +1,52 @@
-const DatabaseProvider = require("tankman/framework/provider/DatabaseProvider")
-const RouteProvider = require("tankman/framework/provider/RouteProvider")
-const ViewProvider = require("tankman/framework/provider/ViewProvider")
-const LogProvider = require("tankman/framework/provider/LogProvider")
-const CacheProvider = require("tankman/framework/provider/CacheProvider")
-const HttpClientProvider = require("tankman/framework/provider/HttpClientProvider")
-const Test1Middleware = require("../app/http/middleware/Test1Middleware")
-const Test2Middleware = require("../app/http/middleware/Test2Middleware")
-const GenerateCommand = require("tankman/framework/command/GenerateCommand")
+// Desc: Application configuration file
+// const facades = require("tankman/framework/facades/Facades");
 const path = require("path");
-const facades = require("tankman/framework/facades/Facades");
-const PugTemplate = require("tankman/framework/template/PugTemplate")
-// const ArtTemplate = require("tankman/framework/template/ArtTemplate")
-// const FileSessionAdapter = require("tankman/framework/http/httpSessionAdapater/FileSessionAdapter")
-const RedisSessionAdapter = require("tankman/framework/http/httpSessionAdapater/RedisSessionAdapter")
-const RedisAdapter = require("tankman/framework/cache/adapter/RedisAdapter");
+// const RedisAdapter = require("tankman/framework/cache/adapter/RedisAdapter");
+// const RedisSessionAdapter = require("tankman/framework/http/httpSessionAdapater/RedisSessionAdapter")
+const FileSessionAdapter = require("tankman/types/http/httpSessionAdapater/FileSessionAdapter");
+
 module.exports = {
-    /**
-     * Clusters of Tankman.js processes can be used to run multiple instances of http-server that can distribute workloads among their application threads.
-     * The cluster module allows easy creation of child processes that all share server ports.
-     */
     cluster: {
         enabled: true,
         process_max_count: 128
     },
-
-    app: {
-        middleware: {
-            test1: Test1Middleware,
-            test2: Test2Middleware
-        },
+    kernel: {
         providers: [
-            DatabaseProvider,
-            RouteProvider,
-            ViewProvider,
-            LogProvider,
-            HttpClientProvider,
-            CacheProvider,
+            require("tankman/framework/provider/DatabaseProvider"),
+            require("tankman/framework/provider/RouteProvider"),
+            require("tankman/framework/provider/ViewProvider"),
+            require("tankman/framework/provider/LogProvider"),
+            require("tankman/framework/provider/CacheProvider"),
+            require("tankman/framework/provider/HttpClientProvider"),
         ],
         commands: [
-            GenerateCommand
+            require("tankman/framework/command/GenerateCommand")
+        ],
+        /**
+         * Clusters of Tankman.js processes can be used to run multiple instances of http-server that can distribute workloads among their application threads.
+         * The cluster module allows easy creation of child processes that all share server ports.
+         */
+        middleware: {   //middleware config
+            test1: require("../app/http/middleware/Test1Middleware"),
+            test2: require("../app/http/middleware/Test2Middleware")
+        },
+        globalMiddlewares: [ //global middlewares
+            {
+                handler: require("tankman/framework/http/middleware/CorsMiddleware"),
+                options: {
+                    // regexp: /^api\/.*$/, //match api/*
+                    // regexp: /^admin\/users\/.*$/, //match admin/users/*
+                    regexp: /[\s\S]*/, //match all
+                    // except: /^api\/map\/.*$/, //except api/map/*
+                    except: [], //except /except/index
+                    allowHeaders: "X-Requested-With,Content-Type,Authorization,Accept,Origin,User-Agent,DNT,Cache-Control,X-Mx-ReqToken",
+                }
+            }
         ]
     },
     xss: {
-        routerWhiteList: [],
-        whiteField: [],
+        routerWhiteList: [], // router white list
+        whiteField: [], // white field
         options: {
             css: {},
             whiteList: {},
@@ -51,15 +54,15 @@ module.exports = {
     },
 
     //render("admin.dashboard",{}) equates render("admin/dashboard",{}), render file as views/admin/dashboard.tpl
-    view: {
+    view: { //view config
         // const PugTemplate = require("tankman/framework/template/PugTemplate")
         // const ArtTemplate = require("tankman/framework/template/ArtTemplate")
         // handler: ArtTemplate,//art|pug
-        handler: PugTemplate,//art|pug
+        handler: require("tankman/framework/template/PugTemplate"),//art|pug default is art
         dir: path.resolve(process.cwd(), 'views'),//absolutePath, default is views/
-        cache: {
+        cache: { //cache config
             // enable: facades.env.get("APP_ENV") === "production",
-            enable: true,
+            enable: true, //default is true
             /**
              * '2 days'  // 172800000
              * '1d'      // 86400000
@@ -83,14 +86,14 @@ module.exports = {
          * so it is not recommended to choose the file type when the type is cache,
          * If you choose a file type, it will default to creating a session file, which is not suitable for distributed systems
          */
-        // handler: new FileSessionAdapter(),//file,cache,database default path is: path.join(process.cwd(),"storage", ".temp", "session")
-        handler: new RedisSessionAdapter(new RedisAdapter({
-            port: facades.env.get("REDIS_PORT", 6379),
-            host: facades.env.get("REDIS_HOST", "127.0.0.1"),
-            username: facades.env.get("REDIS_USERNAME", ""),
-            password: facades.env.get("REDIS_PASSWORD", null),
-            db: 0,
-        })),//file,cache,database default path is: path.join(process.cwd(),"storage", ".temp", "session")
+        handler: new FileSessionAdapter(),//file,cache,database default path is: path.join(process.cwd(),"storage", ".temp", "session")
+        // handler: new RedisSessionAdapter(new RedisAdapter({
+        //     port: facades.env.get("REDIS_PORT", 6379),
+        //     host: facades.env.get("REDIS_HOST", "127.0.0.1"),
+        //     username: facades.env.get("REDIS_USERNAME", ""),
+        //     password: facades.env.get("REDIS_PASSWORD", null),
+        //     db: 0,
+        // })),
         life: {
             maxAge: '30m',
             autoRenew: true,//default：true
