@@ -1,5 +1,5 @@
 const path = require("path");
-const SessionController = path.resolve(__dirname, "../app/http/controller/SessionController.js");
+const SessionController = require( "../app/http/controller/SessionController.js");
 
 module.exports = (route) => {
 

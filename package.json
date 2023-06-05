@@ -5,7 +5,8 @@
   "main": "main.js",
   "scripts": {
     "start": "nodemon main.js",
-    "test": "mocha test/**/*.js"
+    "test": "mocha test/**/*.js",
+    "pkg": "pkg ./main.js --out-path ./release --targets node16-linux-x64,node16-macos-x64,node16-win-x64"
   },
   "repository": {
     "type": "git",

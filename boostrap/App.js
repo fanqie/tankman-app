@@ -1,8 +1,8 @@
-const Application = require("tankman/framework/boot/Application")
-
+const Application = require("tankman/framework/boot/Application");
 /**
  * @type Application
  */
 const app = new Application();
-app.bootTank();
+app.boot(require("../config/index"));
+
 module.exports = app

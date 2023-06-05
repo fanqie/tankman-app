@@ -1,5 +1,5 @@
 const path = require("path");
-const TplExampleController = path.resolve(__dirname, "../app/http/controller/TplExampleController");
+const TplExampleController = require("../app/http/controller/TplExampleController");
 
 module.exports = (route) => {
 
