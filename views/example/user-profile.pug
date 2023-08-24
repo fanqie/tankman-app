@@ -1,0 +1,56 @@
+extends ./layout.pug
+
+block title
+    = title
+
+block head
+ style.
+        body{
+            padding:20px;
+        }
+        label{
+            width:140px;
+            font-weight:bold;
+            font-size:large;
+            text-align:right;
+            display:inline-block;
+        }
+        span.context{
+            text-align:left;
+            display:inline-block;
+            float:right;
+            width:calc( 100% - 150px )
+        }
+
+block content
+    .card(style='width: 500px;')
+        .card-body
+            h5.card-title(title='pug template example')
+                #_idpug pug template example
+            hr
+            .user-info
+                .avatar
+                    img(width='60', src=avatar, alt=username )
+                .info
+                    h2= username
+                    p
+                        label email:
+                        span.context= email
+                    p
+                        label birthday:
+                        span.context= birthday
+                    p
+                        label gender:
+                        span.context= gender
+                    p
+                        label country:
+                        span.context= country
+                    p
+                        label href:
+                        span.context=ctx.request.getHref()
+                    p
+                        label currentRoute:
+                        span.context=ctx.request.getRouter().path
+                    p
+                        label routes:
+                        span.context!= ctx.route.all().map((route)=>route.path).join("<br/>")

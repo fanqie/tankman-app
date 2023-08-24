@@ -1,0 +1,13 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        title
+            block title
+                | My Site
+        link(href='https://unpkg.com/bootstrap@4.6.0/dist/css/bootstrap.min.css', rel='stylesheet',  crossorigin='anonymous')
+        block head
+    body
+        block content
+    script(src='https://unpkg.com/bootstrap@4.6.0/dist/js/bootstrap.min.js',  crossorigin='anonymous')
+        block footer
